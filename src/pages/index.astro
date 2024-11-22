@@ -1,50 +1,157 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import Badge from '../components/Badge.astro';
+import EducationItem from '../components/EducationItem.astro';
+import SkillItem from '../components/SkillItem.astro';
+import ProjectItem from '../components/ProjectItem.astro';
+import Timeline from '../components/Timeline.astro';
+import { SITE_TITLE } from '../consts';
+
+const works = [
+  { 
+    year: '2020 - Presente', 
+    title: 'Senior Software Engineer', 
+    company: 'TechCorp', 
+    description: 'Desarrollo Full Stack y liderazgo de equipo',
+    achievements: ['Lideré un equipo de 5 desarrolladores', 'Implementé CI/CD reduciendo el tiempo de despliegue en un 40%']
+  },
+  { 
+    year: '2018 - 2020', 
+    title: 'Full Stack Developer', 
+    company: 'InnoSoft', 
+    description: 'Desarrollo de aplicaciones web y móviles',
+    achievements: ['Desarrollé una app móvil con 100k+ descargas', 'Optimicé el rendimiento del backend, mejorando los tiempos de respuesta en un 30%']
+  },
+  { 
+    year: '2016 - 2018', 
+    title: 'Junior Developer', 
+    company: 'StartUp Inc.', 
+    description: 'Desarrollo frontend con React',
+    achievements: ['Contribuí al rediseño completo de la interfaz de usuario', 'Implementé pruebas automatizadas, aumentando la cobertura de código al 80%']
+  },
+];
+
+const education = [
+  { 
+    year: '2019 - 2021', 
+    title: 'Maestría en Ingeniería de Software', 
+    institution: 'Universidad Tecnológica Nacional',
+    description: 'Especialización en arquitecturas de software y metodologías ágiles',
+    achievements: ['Tesis sobre "Optimización de Microservicios en la Nube"', 'Premio al mejor proyecto de investigación']
+  },
+  { 
+    year: '2012 - 2016', 
+    title: 'Ingeniería en Sistemas', 
+    institution: 'Universidad de Buenos Aires',
+    description: 'Fundamentos de programación, estructuras de datos y algoritmos',
+    achievements: ['Graduado con honores', 'Participación en hackathons nacionales']
+  },
+];
+
+const skills = [
+  { title: 'React', description: 'Desarrollo de aplicaciones web modernas con hooks y componentes funcionales' },
+  { title: 'Node.js', description: 'Construcción de APIs RESTful y microservicios con Express.js' },
+  { title: 'TypeScript', description: 'Desarrollo de aplicaciones escalables con tipado estático' },
+  { title: 'GraphQL', description: 'Diseño e implementación de APIs eficientes y flexibles' },
+];
+
+const projects = [
+  { title: 'E-commerce App', description: 'Plataforma de compras en línea con React, Node.js y MongoDB' },
+  { title: 'Task Manager', description: 'Aplicación de gestión de tareas con React Native y Firebase' },
+  { title: 'Blog Platform', description: 'Sistema de blogs con Next.js, GraphQL y PostgreSQL' },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE}>
+	<main class="bg-gray-900 text-white min-h-screen">
+		<section class="container mx-auto px-4 py-20">
+		  <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+			<h1 class="text-4xl md:text-5xl font-bold flex items-center gap-x-4 mb-4 md:mb-0">
+			  Hey, soy Matias 
+			  <div class="relative">
+				<img 
+				  class="rounded-full w-16 h-16 transition-transform duration-300 transform hover:scale-110" 
+				  src="/src/images/IMG_5549.png" 
+				  alt="Foto de Matias Rodoni"
+				  width="64"
+				  height="64"
+				/>
+				<Badge class="absolute -top-2 -right-2">Disponible</Badge>
+			  </div>
+			</h1>
+		  </div>
+		  
+		  <h2 class="text-xl md:text-2xl text-wrap mb-4">
+			<span class="text-gradient font-black">Software Engineer</span> y 
+			<span class="text-gradient font-black">Developer Full Stack</span>.
+		  </h2>
+		  <p class="text-gray-300">
+			Apasionado por crear soluciones innovadoras. Soy de Buenos Aires, Argentina 🇦🇷.
+		  </p>
+		</section>
+
+		<section class="container mx-auto px-4 py-16">
+			<h2 class="text-3xl font-bold text-center mb-10">Experiencia Laboral</h2>
+			<Timeline experiences={works} />
+		</section>
+
+		<section class="container mx-auto px-4 py-16 bg-gray-800">
+		<h2 class="text-3xl font-bold text-center mb-10">Educación</h2>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{education.map((edu) => (
+			<EducationItem {...edu} />
+			))}
+		</div>
+		</section>
+
+		<section class="container mx-auto px-4 py-16">
+		<h2 class="text-3xl font-bold text-center mb-10">Habilidades</h2>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			{skills.map((skill) => (
+			<SkillItem {...skill} />
+			))}
+		</div>
+		</section>
+
+		<section class="container mx-auto px-4 py-16 bg-gray-800">
+		<h2 class="text-3xl font-bold text-center mb-10">Proyectos</h2>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{projects.map((project) => (
+			<ProjectItem {...project} />
+			))}
+		</div>
+		</section>
+  </main>
+</Layout>
+
+<style>
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400;
+    animation: gradient 5s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /*Estilos para la barra de desplazamiento horizontal */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #2D3748;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: #4299E1;
+    border-radius: 20px;
+  }
+</style>
+

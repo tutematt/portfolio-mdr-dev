@@ -1,0 +1,28 @@
+---
+const { year, title, institution, description, achievements } = Astro.props;
+---
+
+<div
+    class="relative group bg-gray-900 rounded-lg p-6 shadow-xl transition-all duration-500 ease-in-out transform hover:scale-105 overflow-hidden"
+>
+    <div
+        class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-600 to-transparent opacity-50"
+    >
+    </div>
+    <div class="relative z-10">
+        <h3 class="text-xl font-semibold text-blue-300 mb-2">{title}</h3>
+        <p class="text-gray-400 mb-2">{institution}</p>
+        <p class="text-sm text-gray-500 mb-4">{year}</p>
+        <p class="text-gray-300 mb-4">{description}</p>
+        <ul class="space-y-2">
+            {
+                achievements.map((achievement: unknown) => (
+                    <li class="flex items-center text-sm text-gray-300">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2" />
+                        {achievement}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>

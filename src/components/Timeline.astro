@@ -1,0 +1,35 @@
+---
+import ExperienceItem from './ExperienceItem.astro';
+
+interface Experience {
+  year: string;
+  title: string;
+  company: string;
+  description: string;
+  achievements: string[];
+}
+
+interface Props {
+  experiences: Experience[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<div class="relative py-16">
+  <div class="absolute left-0 right-0 h-1 bg-blue-600 top-24"></div>
+  <div class="flex justify-between items-start overflow-x-auto pb-8">
+    {experiences.map((experience) => (
+      <ExperienceItem {...experience} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .flex > :first-child {
+    margin-left: 0;
+  }
+  .flex > :last-child {
+    margin-right: 0;
+  }
+</style>
