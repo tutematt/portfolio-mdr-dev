@@ -1,127 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Badge from '../components/Badge.astro';
-import EducationItem from '../components/EducationItem.astro';
-import SkillItem from '../components/SkillItem.astro';
-import ProjectItem from '../components/ProjectItem.astro';
-import Timeline from '../components/Timeline.astro';
+import Icon from '../components/Icon.astro';
 import { SITE_TITLE } from '../consts';
 
-const works = [
-  { 
-    year: '2020 - Presente', 
-    title: 'Senior Software Engineer', 
-    company: 'TechCorp', 
-    description: 'Desarrollo Full Stack y liderazgo de equipo',
-    achievements: ['Lideré un equipo de 5 desarrolladores', 'Implementé CI/CD reduciendo el tiempo de despliegue en un 40%']
-  },
-  { 
-    year: '2018 - 2020', 
-    title: 'Full Stack Developer', 
-    company: 'InnoSoft', 
-    description: 'Desarrollo de aplicaciones web y móviles',
-    achievements: ['Desarrollé una app móvil con 100k+ descargas', 'Optimicé el rendimiento del backend, mejorando los tiempos de respuesta en un 30%']
-  },
-  { 
-    year: '2016 - 2018', 
-    title: 'Junior Developer', 
-    company: 'StartUp Inc.', 
-    description: 'Desarrollo frontend con React',
-    achievements: ['Contribuí al rediseño completo de la interfaz de usuario', 'Implementé pruebas automatizadas, aumentando la cobertura de código al 80%']
-  },
-];
-
-const education = [
-  { 
-    year: '2019 - 2021', 
-    title: 'Maestría en Ingeniería de Software', 
-    institution: 'Universidad Tecnológica Nacional',
-    description: 'Especialización en arquitecturas de software y metodologías ágiles',
-    achievements: ['Tesis sobre "Optimización de Microservicios en la Nube"', 'Premio al mejor proyecto de investigación']
-  },
-  { 
-    year: '2012 - 2016', 
-    title: 'Ingeniería en Sistemas', 
-    institution: 'Universidad de Buenos Aires',
-    description: 'Fundamentos de programación, estructuras de datos y algoritmos',
-    achievements: ['Graduado con honores', 'Participación en hackathons nacionales']
-  },
-];
-
 const skills = [
-  { title: 'React', description: 'Desarrollo de aplicaciones web modernas con hooks y componentes funcionales' },
-  { title: 'Node.js', description: 'Construcción de APIs RESTful y microservicios con Express.js' },
-  { title: 'TypeScript', description: 'Desarrollo de aplicaciones escalables con tipado estático' },
-  { title: 'GraphQL', description: 'Diseño e implementación de APIs eficientes y flexibles' },
+  "JavaScript", "TypeScript", "React", "Node.js", "GraphQL", "Python", "Docker", "AWS"
 ];
 
-const projects = [
-  { title: 'E-commerce App', description: 'Plataforma de compras en línea con React, Node.js y MongoDB' },
-  { title: 'Task Manager', description: 'Aplicación de gestión de tareas con React Native y Firebase' },
-  { title: 'Blog Platform', description: 'Sistema de blogs con Next.js, GraphQL y PostgreSQL' },
+const sections = [
+  { title: "Experiencia", href: "/experience", icon: "briefcase" },
+  { title: "Educación", href: "/education", icon: "academic-cap" },
+  { title: "Habilidades", href: "/skills", icon: "code" },
+  { title: "Proyectos", href: "/projects", icon: "document" },
 ];
 ---
 
 <Layout title={SITE_TITLE}>
   <main class="bg-gray-900 text-white min-h-screen">
-    <section class="container mx-auto px-4 py-12 md:py-20">
-      <div class="flex flex-col md:flex-row items-center justify-between mb-8">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
-          Hey, soy Matias 
-          <div class="relative mt-4 md:mt-0">
-            <img 
-              class="rounded-full w-24 h-24 md:w-16 md:h-16 transition-transform duration-300 transform hover:scale-110" 
-              src="/public/images/photo_perfil.png" 
-              alt="Foto de Matias Rodoni"
-              width="96"
-              height="96"
-            />
-            
-          </div>
-		  <div class="relative md:mt-0">
-			<Badge class="">Disponible</Badge>
-		</div>
+    <section class="container mx-auto px-4 py-20 md:py-32">
+      <div class="flex flex-col items-center text-center mb-12">
+        <img 
+          class="rounded-full w-32 h-32 mb-8 border-4 border-blue-500 transition-transform duration-300 transform hover:scale-110" 
+          src="/images/photo_perfil.png" 
+          alt="Foto de Matias Rodoni"
+          width="128"
+          height="128"
+        />
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+          Hey, soy <span class="text-gradient">Matias Rodoni</span>
         </h1>
+        <h2 class="text-2xl md:text-3xl mb-6">
+          <span class="text-blue-400">Software Engineer</span> y 
+          <span class="text-emerald-400">Full Stack Developer</span>
+        </h2>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+          Apasionado por crear soluciones innovadoras y escalables. 
+          Especializado en arquitecturas de microservicios y desarrollo web moderno.
+        </p>
+        <Badge class="text-lg py-2 px-4">Disponible para proyectos</Badge>
       </div>
-      
-      <h2 class="text-xl md:text-2xl text-wrap mb-4">
-        <span class="text-gradient font-black">Software Engineer</span> y 
-        <span class="text-gradient font-black">Developer Full Stack</span>.
-      </h2>
-      <p class="text-gray-300">
-        Apasionado por crear soluciones innovadoras. Soy de Buenos Aires, Argentina 🇦🇷.
-      </p>
-    </section>
 
-    <section class="container mx-auto px-4 py-12 md:py-16">
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">Experiencia Laboral</h2>
-      <Timeline experiences={works} />
-    </section>
-
-    <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-800">
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">Educación</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {education.map((edu) => (
-          <EducationItem {...edu} />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {sections.map(({ title, href, icon }) => (
+          <a href={href} class="bg-gray-800 rounded-lg p-6 transition-transform duration-300 hover:scale-105 hover:bg-gray-700">
+            <div class="flex items-center mb-4">
+              <Icon name={icon} class="w-6 h-6 mr-2 text-blue-400" />
+              <h3 class="text-2xl font-semibold">{title}</h3>
+            </div>
+            <p class="text-gray-400">Explora mi {title.toLowerCase()} y descubre más sobre mi trayectoria profesional.</p>
+          </a>
         ))}
       </div>
-    </section>
 
-    <section class="container mx-auto px-4 py-12 md:py-16">
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">Habilidades</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        {skills.map((skill) => (
-          <SkillItem {...skill} />
-        ))}
+      <div class="text-center">
+        <h3 class="text-2xl font-semibold mb-6">Tecnologías que domino</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {skills.map((skill) => (
+            <span class="bg-gray-800 text-blue-400 rounded-full px-4 py-2 text-sm font-medium">
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
 
-    <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-800">
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-10">Proyectos</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {projects.map((project) => (
-          <ProjectItem {...project} />
-        ))}
+    <section class="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">¿Listo para colaborar en tu próximo proyecto?</h2>
+        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300">
+          Contáctame
+        </a>
       </div>
     </section>
   </main>
@@ -143,17 +92,25 @@ const projects = [
     }
   }
 
-  /* Estilos para la barra de desplazamiento horizontal */
-  .overflow-x-auto::-webkit-scrollbar {
-    height: 8px;
+  /* Efecto de "typing" para simular código */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
   }
 
-  .overflow-x-auto::-webkit-scrollbar-track {
-    background: #2D3748;
+  .typing-effect {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
   }
 
-  .overflow-x-auto::-webkit-scrollbar-thumb {
-    background-color: #4299E1;
-    border-radius: 20px;
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
   }
 </style>
