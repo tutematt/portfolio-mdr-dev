@@ -1,27 +1,30 @@
 ---
-import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+import ResponsiveHeader from '../components/Header.astro';
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <ResponsiveHeader />
+    <main class="pt-20 sm:pt-24">
+      <slot />
+    </main>
+  </body>
 </html>
 <style is:global>
 	:root 
@@ -37,5 +40,6 @@ const { title } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		background: radial-gradient(circle, rgb(10 60 202) 0%, #042e52 100%);
+        padding-top: env(safe-area-inset-top);
 	}
 </style>

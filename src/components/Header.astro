@@ -1,8 +1,94 @@
-<header class="flex justify-center items-center py-5 w-[1120px] mx-auto">
-	<nav class="flex flex-row gap-x-10 opacity-90">
-		<a href="/home">Home</a>
-		<a href="/about">About</a>
-		<a href="/project">Project</a>
-		<a href="/contact">Contact</a>
-	</nav>
+---
+// ResponsiveHeader.astro
+const menuItems = [
+  { href: '/home', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/project', label: 'Project' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="fixed top-0 left-0 w-full z-50 bg-gray-900 text-white">
+  <div class="container mx-auto px-4 py-5 flex justify-between items-center max-w-[1120px]">
+    <a href="/" class="text-2xl font-bold">Logo</a>
+    
+    <nav class="hidden sm:block">
+      <ul class="flex gap-x-10 opacity-90">
+        {menuItems.map((item) => (
+          <li>
+            <a href={item.href} class="text-lg hover:text-blue-500 transition-colors duration-300">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <button id="menu-toggle" class="sm:hidden z-50 relative w-10 h-10 focus:outline-none">
+      <span class="sr-only">Open main menu</span>
+      <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"></span>
+        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"></span>
+        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"></span>
+      </div>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-gray-900 bg-opacity-95 flex items-center justify-center hidden">
+    <nav>
+      <ul class="flex flex-col items-center space-y-8">
+        {menuItems.map((item) => (
+          <li>
+            <a href={item.href} class="text-2xl font-semibold hover:text-blue-500 transition-colors duration-300">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = menuToggle?.querySelector('div');
+
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    document.body.classList.toggle('overflow-hidden');
+
+    menuIcon?.children[0].classList.toggle('rotate-45');
+    menuIcon?.children[0].classList.toggle('translate-y-1.5');
+    menuIcon?.children[1].classList.toggle('opacity-0');
+    menuIcon?.children[2].classList.toggle('-rotate-45');
+    menuIcon?.children[2].classList.toggle('-translate-y-1.5');
+  });
+
+  // Close mobile menu when clicking on a link
+  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+  mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      
+      menuIcon?.children[0].classList.remove('rotate-45');
+      menuIcon?.children[0].classList.add('translate-y-1.5');
+      menuIcon?.children[1].classList.remove('opacity-0');
+      menuIcon?.children[2].classList.remove('-rotate-45');
+      menuIcon?.children[2].classList.add('-translate-y-1.5');
+    });
+  });
+</script>
+
+<style>
+  #menu-toggle span:nth-child(1) {
+    top: 0.45rem;
+  }
+  #menu-toggle span:nth-child(2) {
+    top: 0.95rem;
+  }
+  #menu-toggle span:nth-child(3) {
+    top: 1.45rem;
+  }
+</style>
